@@ -22,6 +22,10 @@
     </head>
     <body class="antialiased">
 
+      <div class="menu">
+	<a href="/">Home</a> <a href="/project">Mes projets</a> <a href="/contact">Contact</a> <a href="/about">About</a>
+      </div>
+
       <!-- Je suis dans le body de layout.blade.php -->
       @yield('content')
       
