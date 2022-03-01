@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use Illuminate\Support\Facades\Mail;
 
 class ProjectController extends Controller
 {
@@ -44,8 +45,21 @@ class ProjectController extends Controller
         // $project->title = request('title'); //on set le titre avec la donnée envoyée du formulaire
         // $project->description = request('description');
         // $project->save(); // on enregistre dans la base
+        request()->validate([
+            'title' => ['required', 'min:3', 'max:255'],
+            'description' => 'required'
+        ]);
 
-        Project::create(request(['title', 'description']));
+        Project::create(array_merge(
+            array('user_id'=>1),
+            request(['title', 'description'])
+        ));
+
+        Mail::raw('Projet créé', function ($message) {
+            $message->to('admin@monsite.com')
+                ->subject('Un nouveau projet');
+        });
+        
         return redirect('/project'); // méthode pour rediriger vers une autre url (en get par défaut)
     }
 

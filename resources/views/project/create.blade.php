@@ -5,7 +5,10 @@
   <form method="POST" action="/project">
     @csrf
     <div>
-      <input type="text" name="title" placeholder="Titre du projet">
+      @error('title')
+      <p style="color:red">{{$errors->first('title')}}</p>
+      @enderror
+      <input @error('title') style="border-color:red" @enderror type="text" name="title" placeholder="Titre du projet" value="{{old('title')}}">
     </div>
     <div>
       <textarea name="description" placeholder="Description du projet"></textarea>

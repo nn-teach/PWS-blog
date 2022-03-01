@@ -15,10 +15,12 @@
         </style>
 
         <style>
-            body {
-                font-family: 'Nunito', sans-serif;
-            }
+         body {
+           font-family: 'Nunito', sans-serif;
+         }
         </style>
+
+	<link href="/css/app.css" rel="stylesheet">
     </head>
     <body class="antialiased">
 
