@@ -8,5 +8,7 @@
     @endforeach
   </ul>
 
-  <a href="/project/create">Créer un nouveau projet</a>
+  <div>
+    <a href="/project/create" class="button">Créer un nouveau projet</a>
+  </div>
 @endsection

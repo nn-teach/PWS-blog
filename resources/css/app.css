@@ -1,4 +1,30 @@
-input,
-textarea{
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+body {
+    padding: 30px;
+}
+.menu {
+    padding: 10px;
+    margin: 10px 0;
+    background: lightgrey;
+}
+.menu a {
+    margin-right: 10px;
+}
+h1 {
+    font-weight: 700;
+    text-decoration:underline;
+}
+ul {
+    display: block;
+    margin: 10px 0 20px;
+}
+.button {
+    background: lightblue;
     border: 1px solid black;
+    border-radius: 10px;
+    padding: 10px;
+    margin-top:20px;
 }

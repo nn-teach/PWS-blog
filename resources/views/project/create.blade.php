@@ -14,7 +14,7 @@
       <textarea name="description" placeholder="Description du projet"></textarea>
     </div>
     <div>
-      <button type="submit">Créer le projet</button>
+      <button type="submit" class="button">Créer le projet</button>
     </div>
   </form>
 @endsection

@@ -24,6 +24,13 @@
     </head>
     <body class="antialiased">
 
+      <div class="login">
+	@auth
+	Bonjour {{ Auth::user()->name}}!
+        @else
+	Pas connecté!
+	@endauth
+      </div>
       <div class="menu">
 	<a href="/">Home</a> <a href="/project">Mes projets</a> <a href="/contact">Contact</a> <a href="/about">About</a>
       </div>
