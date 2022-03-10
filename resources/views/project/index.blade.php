@@ -4,7 +4,10 @@
   <h1>Project</h1>
   <ul>
     @foreach ($projects as $project)
-      <li><a href="/project/{{$project->id}}">{{ $project->title }}</a></li>
+      <li>
+	<a href="/project/{{$project->id}}">{{ $project->title }}</a>
+	<a href="/project/{{$project->id}}/edit">Editer le projet</a>
+      </li>
     @endforeach
   </ul>
 

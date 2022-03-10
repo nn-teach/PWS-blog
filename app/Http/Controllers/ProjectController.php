@@ -6,6 +6,7 @@ use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
 use Illuminate\Support\Facades\Mail;
+use App\Events\ProjectCreated;
 
 class ProjectController extends Controller
 {
@@ -50,17 +51,19 @@ class ProjectController extends Controller
             'description' => 'required'
         ]);
 
-        Project::create(array_merge(
+        $project = Project::create(array_merge(
             array('user_id'=>1),
             request(['title', 'description'])
         ));
-
-        Mail::raw('Projet créé', function ($message) {
-            $message->to('admin@monsite.com')
-                ->subject('Un nouveau projet');
-        });
         
-        return redirect('/project'); // méthode pour rediriger vers une autre url (en get par défaut)
+        ProjectCreated::dispatch($project);
+        
+        // Mail::raw('Projet créé', function ($message) {
+        //     $message->to('admin@monsite.com')
+        //         ->subject('Un nouveau projet');
+        // });
+        
+        //return redirect('/project'); // méthode pour rediriger vers une autre url (en get par défaut)
     }
 
     /**
@@ -85,6 +88,7 @@ class ProjectController extends Controller
     public function edit(Project $project)
     {
         //
+        return view('project.edit', ['project' => $project]);
     }
 
     /**
@@ -97,6 +101,10 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         //
+        $project->title = request('title');
+        $project->description = request('description');
+        $project->save;
+        return redirect('/project');
     }
 
     /**
@@ -108,5 +116,7 @@ class ProjectController extends Controller
     public function destroy(Project $project)
     {
         //
+        $project->delete();
+        return redirect('/project');
     }
 }
